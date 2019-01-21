@@ -24,15 +24,21 @@ namespace BookStore.IdentityServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+            //services.Configure<CookiePolicyOptions>(options =>
+            //{
+            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+            //    options.CheckConsentNeeded = context => true;
+            //    options.MinimumSameSitePolicy = SameSiteMode.None;
+            //});
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()//TODO.AddSigningCredential()
+                .AddTestUsers(IdentityServerInMemoryConfig.GetUsers())
+                .AddInMemoryClients(IdentityServerInMemoryConfig.GetClients())
+                .AddInMemoryIdentityResources(IdentityServerInMemoryConfig.GetIdentityResources())
+                .AddInMemoryApiResources(IdentityServerInMemoryConfig.GetApis());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +56,9 @@ namespace BookStore.IdentityServer
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            //app.UseCookiePolicy();
+
+            app.UseIdentityServer();
 
             app.UseMvc(routes =>
             {
