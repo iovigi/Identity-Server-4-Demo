@@ -224,3 +224,32 @@
 {"SubjectId":"1","ClientId":"mvc","RedirectUri":"http://localhost:5002/signin-oidc","State":"CfDJ8HuCqshqG_dCvpBJKXEWoOrWYw9w4n9sKfrbMdHOYnb8qALpCcz3u5oXcCUn8qZWp_TY30dAaUnDrUOhpD_tW86zmMYXZ5J1N5w7yj_QOB28BeUo-2tqkm2NtoigUic2UsAYZ8gPsIsP1bAE1Dw3M0y62Qyj6Pd02RMa0RBdwL9zu6SWQSRPlYIrBPE-XtYaZvYTdSwa46piaTaihNh15Fd_iiucqaO0aJKAKEo5b3dW7tSnva6f7JK3qfx0h47FNpsJz2pTMj3A9C9iiahTMoVsNdO_KjcFyp7j1mZK3HJdYSh2n_FpsGgfEEFWkHcwyQ","Scope":"openid profile","Error":null,"ErrorDescription":null,"$type":"AuthorizeResponseLog"}
 2019-01-28 18:15:43.354 +02:00 [DBG] Augmenting SignInContext
 2019-01-28 18:15:43.354 +02:00 [INF] AuthenticationScheme: idsrv signed in.
+2019-01-29 00:39:23.118 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-01-29 00:39:23.165 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-01-29 00:39:23.169 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-01-29 00:39:23.169 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-01-29 00:39:23.169 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-01-29 00:39:23.170 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-01-29 00:39:23.170 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-01-29 00:39:23.968 +02:00 [DBG] Login Url: /Account/Login
+2019-01-29 00:39:23.970 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-01-29 00:39:23.970 +02:00 [DBG] Logout Url: /Account/Logout
+2019-01-29 00:39:23.970 +02:00 [DBG] ConsentUrl Url: /consent
+2019-01-29 00:39:23.970 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-01-29 00:39:23.970 +02:00 [DBG] Error Url: /home/error
+2019-01-29 00:39:23.970 +02:00 [DBG] Error Id Parameter: errorId
+2019-01-29 00:41:07.666 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-01-29 00:41:07.707 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-01-29 00:41:07.710 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-01-29 00:41:07.710 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-01-29 00:41:07.710 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-01-29 00:41:07.710 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-01-29 00:41:07.710 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-01-29 00:41:08.365 +02:00 [DBG] Login Url: /Account/Login
+2019-01-29 00:41:08.367 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-01-29 00:41:08.367 +02:00 [DBG] Logout Url: /Account/Logout
+2019-01-29 00:41:08.367 +02:00 [DBG] ConsentUrl Url: /consent
+2019-01-29 00:41:08.367 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-01-29 00:41:08.367 +02:00 [DBG] Error Url: /home/error
+2019-01-29 00:41:08.368 +02:00 [DBG] Error Id Parameter: errorId
+2019-01-29 00:41:25.694 +02:00 [INF] AuthenticationScheme: oidc was challenged.

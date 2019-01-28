@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
-using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace IdentityServer
 {
+    using System;
+    using IdentityServer4;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.IdentityModel.Tokens;
+
     public class Startup
     {
         public IHostingEnvironment Environment { get; }
@@ -28,6 +28,30 @@ namespace IdentityServer
                 .AddInMemoryApiResources(Config.GetApis())
                 .AddInMemoryClients(Config.GetClients())
                 .AddTestUsers(Config.GetUsers());
+
+            services.AddAuthentication()
+            .AddGoogle("Google", options =>
+            {
+                options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+
+                options.ClientId = "<insert here>";
+                options.ClientSecret = "<insert here>";
+            })
+            .AddOpenIdConnect("oidc", "OpenID Connect", options =>
+            {
+                options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                options.SignOutScheme = IdentityServerConstants.SignoutScheme;
+                options.SaveTokens = true;
+
+                options.Authority = "https://demo.identityserver.io/";
+                options.ClientId = "implicit";
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = "name",
+                    RoleClaimType = "role"
+                };
+            });
 
             if (Environment.IsDevelopment())
             {
