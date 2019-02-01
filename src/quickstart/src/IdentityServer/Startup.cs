@@ -3,11 +3,15 @@
 namespace IdentityServer
 {
     using System;
-    using IdentityServer4;
-    using Microsoft.AspNetCore.Builder;
+    using System.Reflection;
+     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
+    using Microsoft.EntityFrameworkCore;
+
+    using IdentityServer4;
+
 
     public class Startup
     {
@@ -23,11 +27,29 @@ namespace IdentityServer
             // uncomment, if you wan to add an MVC-based UI
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 
-            var builder = services.AddIdentityServer()
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApis())
-                .AddInMemoryClients(Config.GetClients())
-                .AddTestUsers(Config.GetUsers());
+            const string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;database=IdentityServer4.Quickstart.EntityFramework-2.0.0;trusted_connection=yes;";
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+
+            // configure identity server with in-memory stores, keys, clients and scopes
+            services.AddIdentityServer()
+                .AddTestUsers(Config.GetUsers())
+                // this adds the config data from DB (clients, resources)
+                .AddConfigurationStore(options =>
+                {
+                    options.ConfigureDbContext = b =>
+                        b.UseSqlServer(connectionString,
+                            sql => sql.MigrationsAssembly(migrationsAssembly));
+                })
+                // this adds the operational data from DB (codes, tokens, consents)
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = b =>
+                        b.UseSqlServer(connectionString,
+                            sql => sql.MigrationsAssembly(migrationsAssembly));
+
+        // this enables automatic token cleanup. this is optional.
+        options.EnableTokenCleanup = true;
+                });
 
             services.AddAuthentication()
             .AddGoogle("Google", options =>
@@ -55,7 +77,7 @@ namespace IdentityServer
 
             if (Environment.IsDevelopment())
             {
-                builder.AddDeveloperSigningCredential();
+                //builder.AddDeveloperSigningCredential();
             }
             else
             {
