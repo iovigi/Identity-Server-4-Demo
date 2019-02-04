@@ -253,3 +253,9 @@
 2019-01-29 00:41:08.367 +02:00 [DBG] Error Url: /home/error
 2019-01-29 00:41:08.368 +02:00 [DBG] Error Id Parameter: errorId
 2019-01-29 00:41:25.694 +02:00 [INF] AuthenticationScheme: oidc was challenged.
+2019-02-05 01:07:35.790 +02:00 [DBG] Using idsrv as default scheme for authentication
+2019-02-05 01:07:35.838 +02:00 [DBG] Using idsrv as default scheme for sign-in
+2019-02-05 01:07:35.838 +02:00 [DBG] Using idsrv as default scheme for sign-out
+2019-02-05 01:07:35.838 +02:00 [DBG] Using idsrv as default scheme for challenge
+2019-02-05 01:07:35.838 +02:00 [DBG] Using idsrv as default scheme for forbid
+2019-02-05 01:07:36.099 +02:00 [DBG] Starting token cleanup
